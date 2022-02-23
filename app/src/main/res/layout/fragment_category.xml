@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.ui.category.CategoryFragment">
+
+    <data>
+
+        <variable
+            name="categoryViewModel"
+            type="com.wind.billypos.view.ui.category.viewmodel.CategoryViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <SearchView
+            android:background="@color/gray_100"
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search Here"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategories"
+            android:layout_height="0dp"
+            app:layout_constrainedHeight="true"
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/searchView"
+            tools:listitem="@layout/row_category" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.ui.setup.LicenceSetupFragment">
+
+    <data>
+
+        <variable
+            name="licenceSetupViewModel"
+            type="com.wind.billypos.view.ui.setup.viewmodel.LicenceSetupViewModel" />
+    </data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_dark">
+
+    <LinearLayout
+
+        app:layout_constraintBottom_toTopOf="@+id/btnGoBack"
+        android:padding="32dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:indeterminateTint="@color/colorPrimary"
+            android:id="@+id/configDetailsProgress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_marginBottom="24dp"
+            android:textStyle="bold"
+            android:textSize="42sp"
+            android:text="@string/license_key"
+            android:textColor="@color/white_300"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+        <EditText
+            android:layout_margin="4dp"
+            android:id="@+id/editLicenseKey"
+            android:hint="@string/hint_license_key"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/gray_dark"
+            android:padding="8dp"
+            android:singleLine="true"
+            android:background="@color/white_300"
+            android:layout_marginBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/txtLicenseKeyValid"
+            android:textAlignment="center"
+            android:layout_marginBottom="12dp"
+            android:textSize="16sp"
+            android:text="@string/license_key_valid"
+            android:textColor="@color/green"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/licenseNextBtn"
+            android:drawableEnd="@drawable/sync"
+            android:drawableTint="@color/white"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="@string/check_license"
+            android:backgroundTint="@color/green"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/licenseValidNextBtn"
+            android:visibility="gone"
+            android:drawableEnd="@drawable/ic_round_keyboard_arrow_right_24px"
+            android:drawableTint="@color/white"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="@string/next"
+            android:backgroundTint="@color/green"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnGoBack"
+        style="@style/Button.Outline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_keyboard_arrow_left_24px"
+        android:text="@string/go_back"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_margin="32dp"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

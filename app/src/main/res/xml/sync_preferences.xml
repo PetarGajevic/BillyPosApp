@@ -1,0 +1,48 @@
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <PreferenceCategory
+        app:fragment="al.nexia.apps.android.cashregisterpos.activities.SettingsActivity$SyncFragment"
+        app:icon="@drawable/sync"
+        app:key="@string/sync_key"
+        app:title="@string/sync_header">
+
+        <Preference
+            android:key="@string/sync_key_all"
+            android:title="@string/sync_all" />
+
+        <Preference
+            android:key="sync_key_customers"
+            android:title="@string/sync_customers" />
+
+        <Preference
+            android:key="@string/sync_key_categories"
+            android:title="@string/sync_categories" />
+
+        <Preference
+            android:key="@string/sync_key_items"
+            android:title="@string/sync_items" />
+
+
+        <Preference
+            android:key="@string/sync_key_transactions"
+            android:title="@string/sync_transactions" />
+
+
+        <Preference
+            android:key="@string/sync_key_cash"
+            android:title="@string/sync_cash_balanc" />
+
+        <Preference
+            android:key="@string/sync_key_entity_point"
+            android:title="@string/sync_entity_point" />
+
+        <Preference
+            android:key="@string/sync_key_operators"
+            android:title="@string/sync_operators" />
+
+
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

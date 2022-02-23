@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="transaction"
+            type="com.wind.billypos.view.model.TransactionHead" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/itemPaymentMethod"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_baseline_money_24px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="10dp"
+            android:visibility="@{transaction.isOrderSelected ? View.INVISIBLE: View.VISIBLE }"/>
+
+        <ImageView
+            android:id="@+id/itemSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_round_check_24px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="10dp"
+            android:visibility="@{transaction.isOrderSelected ? View.VISIBLE : View.INVISIBLE}"/>
+
+
+
+            <TextView
+                android:id="@+id/itemPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{ String.valueOf(transaction.totalWithVat) }"
+                tools:text="@string/demo_price"
+                android:textColor="@color/gray_800"
+                android:textSize="15sp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toEndOf="@+id/itemPaymentMethod"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textStyle="bold" />
+
+
+
+        <TextView
+            android:id="@+id/statusTransaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toStartOf="@id/itemDate"
+            android:paddingLeft="8dp"
+            android:paddingTop="2dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="2dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/status"
+            app:layout_constraintEnd_toStartOf="@+id/transactionInfo"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/itemDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:paddingLeft="8dp"
+            android:paddingTop="2dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="2dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/gray_800"
+            android:layout_marginTop="5dp"
+            tools:text="22:23:42"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@+id/transactionInfo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/statusTransaction"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/transactionInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toStartOf="@id/statusTransaction"
+            android:scaleX="1.4"
+            android:scaleY="1.4"
+            android:padding="6dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_round_info_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/gray_dark" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

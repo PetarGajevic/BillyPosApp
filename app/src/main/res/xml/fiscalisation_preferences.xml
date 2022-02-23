@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceCategory
+        app:fragment="al.nexia.apps.android.cashregisterpos.activities.SettingsActivity$FiscalisationFragment"
+        app:key="printer_key_category"
+        app:title="@string/fiscalisation_header_title">
+        <Preference
+            android:key="fiscalisation_certificate_key"
+            android:title="@string/fiscalisation_certificate"/>
+        <EditTextPreference
+            android:key="fiscalisation_certificate_pin_key"
+            android:title="@string/fiscalisation_certificate_pin"/>
+        <Preference
+            android:key="fiscalisation_device_register_key"
+            android:title="@string/fiscalisation_device_register"/>
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

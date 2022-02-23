@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.wind.billypos.view.ui.settings.ExportUnfiscalisedFragment">
+
+    <data>
+
+        <variable
+            name="exportUnfiscalisedVideModel"
+            type="com.wind.billypos.view.ui.settings.viewmodel.ExportUnfiscalisedVideModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_100"
+        android:orientation="vertical"
+        android:theme="@style/AppBarOverlay_Green">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:layout_margin="12dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/invoices_unfiscalised"
+                android:textColor="@color/gray_dark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:contentPaddingBottom="12dp"
+                app:contentPaddingLeft="16dp"
+                app:contentPaddingRight="16dp"
+                app:contentPaddingTop="12dp"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardCornerRadius="4dp">
+
+                <TextView
+                    android:id="@+id/txtTotalTransactionsLocally"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/local_transactions_report"
+                    android:text="@{@string/local_transactions_report(String.valueOf(exportUnfiscalisedVideModel.mutableLiveDataCountTransactionHead))}"
+                    android:textSize="18sp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/exportShareZipFile"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="@color/accent"
+                android:drawableTint="@color/white"
+                android:text="@string/share_zip_file"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:visibility="gone"
+                tools:ignore="UnusedAttribute" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/mProgressCreatingZip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:indeterminateTint="@color/colorPrimary"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/exportInvoicesBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/exportInvoicesBtn"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_margin="12dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/green"
+            android:drawableTint="@color/white"
+            android:text="@string/export"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="UnusedAttribute" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.ui.invoice.InvoiceFragment">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="invoiceViewModel"
+            type="com.wind.billypos.view.ui.invoice.viewmodel.InvoiceViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clCategories"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:paddingTop="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewSubCategories"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:id="@+id/rlAllItems"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                app:layout_constraintEnd_toStartOf="@+id/recyclerViewCategories"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_centerVertical="true">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvAllItems"
+                android:padding="8dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardCornerRadius="4dp"
+                card_view:contentPadding="8dp">
+
+                <TextView
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:id="@+id/categoryName"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/gray_dark"
+                    android:text="@string/all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCategories"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:background="@color/white"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/rlAllItems"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/filter_category_row" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSubCategories"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:visibility="@{ invoiceViewModel.mutableLiveDataSubCategoriesShow ? View.VISIBLE : View.GONE }"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clCategories"
+            tools:listitem="@layout/filter_category_row" />
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/gray_100"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search Here"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewSubCategories" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_pos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/white"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            app:layout_constraintBottom_toTopOf="@+id/layReceiptOverview"
+            app:layout_constraintTop_toBottomOf="@+id/searchView"
+            tools:listitem="@layout/row_item_grid" />
+
+        <RelativeLayout
+            android:id="@+id/layReceiptOverview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPosClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="8dp"
+                android:height="56dp"
+                android:background="@color/accent"
+                android:backgroundTint="@color/accent"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="@string/clear"
+                android:textSize="15sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPosCheckout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/btnPosClear"
+                android:height="56dp"
+                android:background="@color/colorAccent"
+                android:backgroundTint="@color/colorAccent"
+                tools:text="2.0"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                app:icon="@drawable/ic_round_keyboard_arrow_right_24px"
+                app:iconGravity="end" />
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

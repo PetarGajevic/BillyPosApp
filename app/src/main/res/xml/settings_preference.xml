@@ -1,0 +1,65 @@
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceCategory
+        app:fragment="al.nexia.apps.android.cashregisterpos.activities.SettingsActivity$SyncFragment"
+        app:icon="@drawable/ic_round_info_24px"
+        app:key="details_header">
+
+        <Preference
+            android:key="details_key"
+            android:selectable="false"
+            android:persistent="false" />
+
+        <Preference
+            app:fragment="al.nexia.apps.android.cashregisterpos.activities.SettingsActivity$FiscalisationFragment"
+            app:icon="@drawable/ic_settings_system"
+            app:key="fiscal_header"
+            app:title="@string/fiscalisation_header_title" />
+
+        <ListPreference
+            android:defaultValue="sq"
+            android:key="lang_list"
+            app:icon="@drawable/ic_lang_icon"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/choose_lang" />
+    </PreferenceCategory>
+
+    <Preference
+        app:fragment="al.nexia.apps.android.cashregisterpos.activities.SettingsActivity$SyncFragment"
+        app:icon="@drawable/ic_sync_alt_24px"
+        app:key="sync_and_backup"
+        app:title="@string/sync_and_backup" />
+
+    <Preference
+        app:icon="@drawable/ic_sync_alt_24px"
+        app:key="export_unfiscalised"
+        app:title="@string/export_unfiscalised" />
+
+    <Preference
+        app:fragment="al.nexia.apps.android.cashregisterpos.activities.SettingsActivity$SyncFragment"
+        app:icon="@drawable/sync"
+        app:key="sync_header"
+        app:title="@string/sync_tool" />
+
+    <Preference
+        app:fragment="al.nexia.apps.android.cashregisterpos.activities.SettingsActivity$PrintFragment"
+        app:icon="@drawable/ic_print_24px"
+        app:key="print_header"
+        app:title="@string/print_category">
+    </Preference>
+
+
+    <PreferenceCategory
+        app:fragment="al.nexia.apps.android.cashregisterpos.activities.SettingsActivity$LogOutFragment"
+        app:key="logOut_header">
+        <Preference
+            android:icon="@drawable/ic_exit_to_app_24px"
+            android:key="@string/logout_key"
+            android:title="@string/logout"/>
+
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

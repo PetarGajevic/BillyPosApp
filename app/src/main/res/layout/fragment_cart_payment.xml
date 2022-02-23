@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.ui.invoice.CartPaymentFragment">
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="transaction"
+            type="com.wind.billypos.view.model.TransactionHead" />
+
+        <variable
+            name="cartPaymentViewModel"
+            type="com.wind.billypos.view.ui.invoice.viewmodel.CartPaymentViewModel" />
+    </data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/pos"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/loginProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:indeterminate="true"
+        android:visibility="@{cartPaymentViewModel.mutableLiveDataProgressBar ? View.VISIBLE : View.GONE}"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <LinearLayout
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        android:id="@+id/view_order_invoice"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+<!--        <TextView-->
+<!--            android:textSize="22sp"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:textAlignment="center"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            tools:text="@string/total_invoice"-->
+<!--            android:textColor="@color/gray_700"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/totalOrderInvoice"-->
+<!--            android:textSize="28sp"-->
+<!--            android:textAlignment="center"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            tools:text="@string/demo_price"-->
+<!--            android:textColor="@color/gray_700"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+
+    </LinearLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:id="@+id/payment_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/relativeBottomLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/layPaymentOverview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true">
+
+
+            <TextView
+                android:id="@+id/txtCartDoneLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_horizontal"
+                android:text="@string/you_received"
+                android:textAlignment="center"
+                android:textColor="@color/gray_700"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/txtCartTotalAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingLeft="48dp"
+                android:paddingRight="48dp"
+                android:text="@string/demo_price"
+                android:textAlignment="center"
+                android:textColor="@color/gray_dark"
+                android:textSize="32sp" />
+
+            <TextView
+                android:id="@+id/txtCartCharge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:text="@string/demo_change"
+                android:textAlignment="center"
+                android:textColor="@color/gray_700"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/layChoosePaymentType"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alignmentMode="alignBounds"
+                android:id="@+id/paymentMethods"
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/llCash"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:id="@+id/paymentMethodCash"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.3"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:checked="true"
+                            android:id="@+id/checkboxCach"
+                            android:theme="@style/checkbox"
+                            android:layout_height="match_parent">
+                        </androidx.appcompat.widget.AppCompatCheckBox>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:id="@+id/paymentMethodCashImg"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:contentDescription="@string/payment_method_cash"
+                                android:src="@drawable/ic_baseline_money_selected" />
+
+                            <TextView
+                                android:id="@+id/paymentMethodCashTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/payment_method_cash"
+                                android:textAlignment="center"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/paymentMethodCashValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical"
+                        android:padding="8dp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/txtCachValuePayment"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:layout_gravity="end"
+                            android:layout_marginTop="16dp"
+                            android:inputType="numberDecimal"
+                            android:selectAllOnFocus="true"
+                            android:maxLines="1"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:text="@string/demo_zero_price"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/gray_dark"
+                            android:textSize="20sp"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/llCreditCard"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                   >
+
+                    <LinearLayout
+                        android:id="@+id/paymentMethodCC"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_marginStart="-1dp"
+                        android:layout_weight="0.3"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:id="@+id/checkboxCC"
+                            android:theme="@style/checkbox"
+                            android:layout_height="match_parent">
+                        </androidx.appcompat.widget.AppCompatCheckBox>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:id="@+id/paymentMethodCCImg"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:contentDescription="@string/payment_method_cc"
+                                android:src="@drawable/ic_payment_cc" />
+
+                            <TextView
+                                android:id="@+id/paymentMethodCCTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/payment_method_cc"
+                                android:textAlignment="center"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/paymentMethodCCValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical"
+                        android:padding="8dp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/txtCCValuePayment"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:layout_gravity="end"
+                            android:layout_marginTop="16dp"
+                            android:inputType="numberDecimal"
+                            android:maxLines="1"
+                            android:selectAllOnFocus="true"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:text="@string/demo_zero_price"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/gray_dark"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/paymentMethodSVoucher"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.3"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="horizontal"
+                        android:padding="4dp">
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:theme="@style/checkbox"
+                            android:id="@+id/checkboxSVoucher"
+                            android:layout_height="match_parent">
+                        </androidx.appcompat.widget.AppCompatCheckBox>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_height="match_parent">
+                            <ImageView
+                                android:id="@+id/paymentMethodSVoucherImg"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:contentDescription="@string/payment_method_cash"
+                                android:src="@drawable/ic_local_offer_24px" />
+
+                            <TextView
+                                android:id="@+id/paymentMethodSVoucherTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/payment_method_svoucher"
+                                android:textAlignment="center"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/paymentMethodSVoucherValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:layout_width="match_parent"
+                            android:id="@+id/nrSVoucher"
+                            android:layout_height="match_parent"
+                            android:hint="@string/payment_method_nr_svoucher"
+                            android:textAlignment="center"
+                            android:gravity="bottom"
+                            android:textSize="16sp"
+                            android:visibility="gone"
+                            android:textColor="@color/gray_dark"
+                            android:layout_gravity="end"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat">
+
+                        </androidx.appcompat.widget.AppCompatEditText>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:id="@+id/txtSVoucherValuePayment"
+                            android:layout_gravity="bottom"
+                            android:textAlignment="viewEnd"
+                            android:layout_height="56dp"
+                            android:maxLines="1"
+                            android:textColor="@color/black"
+                            android:textSize="18dp"
+                            tools:ignore="RtlCompat" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_line_top"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:paddingRight="12dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:textAlignment="textEnd"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:text="@string/you_received"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:paddingRight="12dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/sumOfPayment"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:textAlignment="textEnd"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:text="Total"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:paddingRight="12dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:textAlignment="textEnd"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:text="@string/change"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:paddingRight="12dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:id="@+id/changeAmount"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:textAlignment="textEnd"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="12px"
+                    android:background="@drawable/bg_line_top"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:paddingRight="12dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:textAlignment="textEnd"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:textStyle="bold"
+                            android:text="@string/total_invoice"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:paddingRight="12dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/invoiceTotalAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:textAlignment="textEnd"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:textStyle="bold"
+                            tools:text="@string/demo_price"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeBottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirmPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:height="56dp"
+            android:background="@color/colorAccent"
+            android:backgroundTint="@color/colorAccent"
+            android:enabled="false"
+            android:text="@string/confirm_payment"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            app:icon="@drawable/ic_round_keyboard_arrow_right_24px"
+            app:iconGravity="end" />
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

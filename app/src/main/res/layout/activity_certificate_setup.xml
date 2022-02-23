@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.ui.certificate.CertificateSetupActivity">
+
+    <data>
+
+        <variable
+            name="certificateViewModel"
+            type="com.wind.billypos.view.ui.certificate.viewmodel.CertificateSetupViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_dark"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnGoBack"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="@string/digital_certificate_setup"
+            android:textColor="@color/white_300"
+            android:textSize="42sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editSelectCertificate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="@color/white_300"
+            android:editable="false"
+            android:focusable="false"
+            android:hint="@string/hint_certificate"
+            android:padding="8dp"
+            android:singleLine="true"
+            android:textColor="@color/gray_dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/editCertificatePIN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:background="@color/white_300"
+            android:hint="@string/hint_pin_certificate"
+            android:padding="8dp"
+            android:singleLine="true"
+            android:textColor="@color/gray_dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/certificateNextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/green"
+            android:drawableEnd="@drawable/ic_round_keyboard_arrow_right_24px"
+            android:drawableTint="@color/white"
+            android:text="@string/next"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            tools:ignore="UnusedAttribute" />
+
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnGoBack"
+        style="@style/Button.Outline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_keyboard_arrow_left_24px"
+        android:text="@string/go_back"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_margin="32dp"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

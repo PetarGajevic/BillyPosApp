@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+
+<!--        <variable-->
+<!--            name="transactionListener"-->
+<!--            type="com.wind.billypos.view.ui.invoice.adapter.TransactionBodyClick" />-->
+
+        <variable
+            name="transactionBody"
+            type="com.wind.billypos.view.model.TransactionBody" />
+    </data>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:background="@color/white"
+   >
+
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/removeItem"
+        android:layout_margin="1dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_round_close_red_24px"
+        android:layout_alignParentStart="true"
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
+
+
+    <TextView
+        android:layout_marginStart="4dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:id="@+id/itemQuantity"
+        android:layout_toEndOf="@+id/removeItem"
+        android:textColor="@color/gray_800"
+        android:text="@{ String.valueOf(transactionBody.quantity) }"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <TextView
+        android:textSize="13sp"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/itemQuantity"
+        android:id="@+id/itemQuantityLbl"
+        android:textColor="@color/gray_700"
+        android:text="@string/times_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/itemQuantityLbl"
+        android:id="@+id/itemName"
+        android:textSize="14sp"
+        android:textColor="@color/gray_800"
+        android:text="@{ transactionBody.itemName }"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <TextView
+        android:id="@+id/itemPrice"
+        android:layout_centerInParent="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/gray_800"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
+
+</layout>

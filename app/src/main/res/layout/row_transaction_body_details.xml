@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="transactionBodyDetails"
+            type="com.wind.billypos.view.model.TransactionBody" />
+    </data>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="4dp">
+
+
+    <TextView
+        android:id="@+id/itemQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:text="@{ String.valueOf(transactionBodyDetails.quantity) }"
+        tools:text="@string/demo_price"
+        android:textColor="@color/gray_800"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/itemQuantityLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/itemQuantity"
+        android:gravity="center_vertical"
+        android:text="@string/times_quantity"
+        android:textColor="@color/gray_700"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:id="@+id/layDetailsContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/itemQuantityLbl"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/itemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{ transactionBodyDetails.itemName }"
+            tools:text="@string/demo_item_name"
+            android:textColor="@color/gray_800"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/itemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{ String.valueOf(transactionBodyDetails.itemPriceWithDiscount) }"
+            tools:text="@string/demo_item_name"
+            android:textColor="@color/gray_800"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/itemSubtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:text="@{ String.valueOf(transactionBodyDetails.totalWithVat) }"
+        tools:text="@string/demo_price"
+        android:textColor="@color/gray_800"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
+
+</layout>

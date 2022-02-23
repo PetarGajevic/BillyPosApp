@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.ui.transaction.TransactionDetailsFragment">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="transaction"
+            type="com.wind.billypos.view.model.TransactionHead" />
+
+        <variable
+            name="entityPointViewModel"
+            type="com.wind.billypos.view.ui.order.viewmodel.EntityPointViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:theme="@style/AppBarOverlay_Green"
+        >
+
+
+        <RelativeLayout
+            android:id="@+id/layTransactionDetails"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:padding="16dp"
+            android:background="@color/lightgrey"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/itemPaymentMethod"
+                android:layout_margin="12dp"
+                android:src="@drawable/ic_baseline_money_24px"
+                android:layout_width="56dp"
+                android:layout_height="56dp" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_centerInParent="true"
+                android:layout_toEndOf="@+id/itemPaymentMethod"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/invoiceNo"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:textColor="@color/gray_800"
+                    android:text="@string/nr_transactions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+                <TextView
+                    android:id="@+id/transactionStatus"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/total_of_invoices"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/invoiceNo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+                <TextView
+                    android:id="@+id/transactionHeadQuantity"
+                    android:textSize="17sp"
+                    android:textColor="@color/gray_800"
+                    tools:text="2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/transactionsTotal"
+                    android:layout_marginTop="8dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/gray_800"
+                    android:text="@{ String.valueOf(transaction.totalWithVat) }"
+                    tools:text="@string/demo_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/transactionHeadQuantity"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </RelativeLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:backgroundTint="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/layTransactionDetails">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewTransDetails"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="81dp"
+                android:background="@android:color/white"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/row_order_invoice" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="bottom"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mbNewOrderInvoice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:height="56dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:textAllCaps="false"
+                    android:textSize="15sp"
+                    app:background="@color/colorAccent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mbPayOrder"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@string/new_order_invoice"
+                   />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mbPayOrder"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:height="56dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:textAllCaps="false"
+                    android:textSize="15sp"
+                    app:background="@color/colorAccent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/mbNewOrderInvoice"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@string/pay_order" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

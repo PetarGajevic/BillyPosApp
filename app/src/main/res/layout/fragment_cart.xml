@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.ui.invoice.CartFragment">
+    <data>
+
+        <variable
+            name="cartViewModel"
+            type="com.wind.billypos.view.ui.invoice.viewmodel.CartViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/pos"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:gravity="start"
+        android:background="@drawable/bg_green_corners"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        android:id="@+id/layChosenCustomer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:drawableTint="@color/green"
+            android:drawableStart="@drawable/ic_user_chosen"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:id="@+id/txtClientName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:targetApi="m" />
+
+        <ImageView
+            android:id="@+id/imgClearSelectedCustomer"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_round_close_red_24px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_pos_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layChosenCustomer"
+        tools:listitem="@layout/row_transaction_body" />
+
+    <!--<LinearLayout-->
+    <!--android:orientation="vertical"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintBottom_toBottomOf="@+id/recyclerview_pos"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<TextView-->
+    <!--android:textSize="16sp"-->
+    <!--android:textStyle="bold"-->
+    <!--android:textColor="@color/gray_700"-->
+    <!--android:id="@+id/txtCartTotalAmount"-->
+    <!--android:gravity="end"-->
+    <!--android:paddingBottom="72dp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->
+    <!--</LinearLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/layReceiptOverview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_alignParentStart="true"
+            android:id="@+id/btnPosCheckoutOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:height="56dp"
+            android:backgroundTint="@color/gray_dark"
+            android:background="@color/gray_dark"
+            app:icon="@drawable/ic_menu_more_vert_24px"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:contentDescription="@string/more_options" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPosCheckoutSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/btnPosCheckoutOptions"
+            android:layout_marginStart="8dp"
+            android:height="56dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:backgroundTint="@color/colorAccent"
+            android:background="@color/colorAccent"
+            app:iconGravity="end"
+            android:textAllCaps="false"
+            app:icon="@drawable/ic_round_keyboard_arrow_right_24px"
+            android:text="@string/select_item"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

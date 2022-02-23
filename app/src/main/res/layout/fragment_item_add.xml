@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    
+    <data>
+        
+        <variable
+            name="addItemViewModel"
+            type="com.wind.billypos.view.ui.item.viewmodel.AddItemViewModel" />
+
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:theme="@style/AppBarOverlay_Green"
+    tools:context="com.wind.billypos.view.ui.item.AddItemFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="parent">
+
+        <LinearLayout
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/itemName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/item_name"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/itemBarcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/item_barcode"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textAllCaps="true"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/itemDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/item_description"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/itemUnit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/item_unit"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/itemPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/item_price"
+                    android:inputType="numberDecimal"
+                    android:text="@string/double_price_preview"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/discount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/discount"
+                    android:inputType="numberDecimal"
+                    android:text="@string/double_price_preview"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/totalPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/total_price"
+                    android:inputType="numberDecimal"
+                    android:text="@string/double_price_preview"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/vat_print" />
+
+            <Spinner
+                android:background="@drawable/bg_table_borders"
+                android:padding="8dp"
+                android:id="@+id/itemVAT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/vat_print"
+                android:singleLine="true"
+                android:popupBackground="@color/white"
+                android:textColor="@color/gray_dark"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/item_type" />
+
+            <Spinner
+                android:background="@drawable/bg_table_borders"
+                android:padding="8dp"
+                android:id="@+id/itemType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/item_type"
+                android:singleLine="true"
+                android:popupBackground="@color/white"
+                android:textColor="@color/gray_dark"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/item_category" />
+
+            <Spinner
+                android:background="@drawable/bg_table_borders"
+                android:padding="8dp"
+                android:id="@+id/itemCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/item_category"
+                android:singleLine="true"
+                android:popupBackground="@color/white"
+                android:textColor="@color/gray_dark"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/item_subcategory" />
+
+            <Spinner
+                android:background="@drawable/bg_table_borders"
+                android:padding="8dp"
+                android:id="@+id/itemSubCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/item_subcategory"
+                android:popupBackground="@color/white"
+                android:textColor="@color/gray_dark"
+                android:textSize="16sp" />
+
+
+            <ProgressBar
+                android:id="@+id/loadingSyncItem"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:indeterminateTint="@color/colorAccent"
+                android:visibility="gone" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.wind.billypos.view.ui.transaction.TransactionFragment">
+
+    <item
+        android:id="@+id/action_send_unfiscalised"
+        android:orderInCategory="100"
+        android:title="@string/action_send_unfiscalised"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_send_unsynced"
+        android:orderInCategory="200"
+        android:title="@string/action_send_unsynced"
+        app:showAsAction="never" />
+</menu>

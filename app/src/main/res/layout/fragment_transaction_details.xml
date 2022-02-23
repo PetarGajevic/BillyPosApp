@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.ui.transaction.TransactionDetailsFragment">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="transaction"
+            type="com.wind.billypos.view.model.TransactionHead" />
+
+        <variable
+            name="transactionDetailsViewModel"
+            type="com.wind.billypos.view.ui.transaction.viewmodel.TransactionDetailsViewModel" />
+
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/clFullScreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:theme="@style/AppBarOverlay_Green"
+   >
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:id="@+id/layTransactionDetails"
+        android:layout_width="match_parent"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:background="@color/lightgrey"
+        android:gravity="center_vertical"
+
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/itemPaymentMethod"
+            android:layout_margin="12dp"
+            android:src="@drawable/ic_baseline_money_24px"
+            android:layout_width="56dp"
+            android:layout_height="56dp" />
+
+
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_toEndOf="@+id/itemPaymentMethod"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/invoiceNo"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:textColor="@color/gray_800"
+                android:text="@string/invoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/transactionStatus"
+                android:textSize="13sp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingRight="12dp"
+                android:paddingLeft="12dp"
+                android:textStyle="bold"
+                android:background="@color/gray_700"
+                android:textColor="@color/black"
+                android:text="@{ transactionDetailsViewModel.mutableLiveDataIsFiscalized }"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/txtCancellationOfReference"
+                android:clickable="true"
+                android:padding="4dp"
+                android:textColor="@color/gray_800"
+                android:textSize="16sp"
+                android:text="@string/cancellation_of"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true" />
+
+            <TextView
+                android:drawableTint="@color/green"
+                android:drawableStart="@drawable/ic_user_chosen"
+                android:visibility="gone"
+                android:id="@+id/txtCustomerName"
+                android:clickable="true"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/gray_800"
+                android:textSize="16sp"
+                android:text="@string/cancellation_of"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                tools:targetApi="m" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:padding="16dp"
+            android:id="@+id/totalPrinceOfTransaction"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/gray_800"
+            android:text="@{ String.valueOf(transaction.totalWithVat) }"
+            tools:text="@string/demo_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@+id/layTransactionDetails"
+        android:paddingBottom="164dp"
+        tools:ignore="ScrollViewCount">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="64dp"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewTransDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:listitem="@layout/row_transaction_body" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:background="@color/lightgrey"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewTransDetails"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linearCach"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:paddingRight="12dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:textAlignment="textEnd"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:textStyle="bold"
+                            android:text="@string/payment_method_cash"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:paddingRight="12dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/paymentCach"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:textAlignment="textEnd"
+                            android:inputType="number"
+                            android:textStyle="bold"
+                            android:maxLines="1"
+                            android:text="Total"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:id="@+id/linearCC"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:paddingRight="12dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:textAlignment="textEnd"
+                            android:textStyle="bold"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:text="@string/payment_method_cc"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:paddingRight="12dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:id="@+id/paymentCC"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:textAlignment="textEnd"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linearSVoucher"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:paddingRight="12dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:textAlignment="textEnd"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:text="@string/payment_method_svoucher"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:paddingRight="12dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:id="@+id/paymentSVoucher"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:textAlignment="textEnd"
+                            android:inputType="number"
+                            android:textStyle="bold"
+                            android:maxLines="1"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:id="@+id/linearOrder"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:paddingRight="12dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:textAlignment="textEnd"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:text="@string/payment_method_order"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="vertical"
+                        android:paddingRight="12dp">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:id="@+id/paymentOrder"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:textAlignment="textEnd"
+                            android:inputType="number"
+                            android:textStyle="bold"
+                            android:maxLines="1"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/loadingSyncTransaction"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/colorAccent"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layReceiptOverviewButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/layInvoiceIsCanceled"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnPosCheckoutSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:enabled="@{!transaction.isFiscalized}"
+            android:src="@drawable/ic_tax"
+            app:tint="#FFFFFF"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/save" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnPosEditTransaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:enabled="@{transaction.isFiscalized &amp;&amp; !transaction.isReversed}"
+            android:src="@drawable/ic_edit"
+            app:tint="#FFFFFF"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/edit" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnCancelTransaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:enabled="@{transaction.isFiscalized &amp;&amp; !transaction.isReversed}"
+            android:src="@drawable/ic_close_white"
+            app:tint="#FFFFFF"
+            android:backgroundTint="@color/category_red"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/storno" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnPosCheckoutPrint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/storno"
+            android:src="@drawable/ic_print_24px"
+            android:backgroundTint="@color/blueDark"
+            app:tint="#FFFFFF" />
+
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/btnPosEditTransaction"-->
+<!--            android:layout_below="@+id/loadingSyncTransaction"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility="@{transaction.isFiscalized &amp;&amp; !transaction.isReversed? View.VISIBLE : View.GONE}"-->
+<!--            android:layout_toStartOf="@+id/btnPosCheckoutPrint"-->
+<!--            android:height="56dp"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:backgroundTint="@color/colorAccent"-->
+<!--            android:background="@color/colorAccent"-->
+<!--            android:text="@string/edit_invoice"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textSize="15sp" />-->
+
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/btnPosCheckoutSave"-->
+<!--            android:layout_below="@+id/btnPosEditTransaction"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility="@{transaction.isFiscalized &amp;&amp; transaction.isReversed ? View.GONE : View.VISIBLE}"-->
+<!--            android:layout_toStartOf="@+id/btnPosCheckoutPrint"-->
+<!--            android:height="56dp"-->
+<!--            android:backgroundTint="@color/colorAccent"-->
+<!--            android:background="@color/colorAccent"-->
+<!--            android:text="@string/fiscalize_invoice"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textSize="15sp" />-->
+
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/btnCancelTransaction"-->
+<!--            android:layout_below="@+id/btnPosEditTransaction"-->
+<!--            android:visibility="@{transaction.isFiscalized &amp;&amp; !transaction.isReversed ? View.VISIBLE : View.GONE}"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_toStartOf="@+id/btnPosCheckoutPrint"-->
+<!--            android:height="56dp"-->
+<!--            app:backgroundTint="@color/red"-->
+<!--            android:background="@color/red"-->
+<!--            android:text="@string/cancel_sale"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textSize="15sp" />-->
+
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/btnPosCheckoutPrint"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:height="56dp"-->
+<!--            android:backgroundTint="@color/accent"-->
+<!--            android:layout_below="@+id/btnPosEditTransaction"-->
+<!--            android:background="@color/accent"-->
+<!--            android:text="@string/print"-->
+<!--            app:icon="@drawable/ic_round_print_24px"-->
+<!--            android:textSize="15sp" />-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/layInvoiceIsCanceled"
+        android:background="@color/gray_dark"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        <TextView
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="@string/this_invoice_is_reversed"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

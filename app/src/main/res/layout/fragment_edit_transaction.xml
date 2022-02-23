@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.ui.transaction.EditTransactionFragment">
+
+    <data>
+        <variable
+            name="transactionHead"
+            type="com.wind.billypos.view.model.TransactionHead" />
+
+        <variable
+            name="transactionViewModel"
+            type="com.wind.billypos.view.ui.transaction.viewmodel.TransactionViewModel" />
+
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgPrintClose"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="start"
+            android:src="@drawable/ic_round_close_24px"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnReceiptPrint"
+            android:layout_below="@+id/imgPrintClose"
+            android:fillViewport="true">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:clipToPadding="false"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp"
+                tools:context=".activities.ui.pos.TransactionItemDetailsFragment">
+
+
+                <TextView
+                    android:id="@+id/txtPrintInvoiceNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/demo_invoice_no"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/gray_700"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtPrintCompanyName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/demo_company_name"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@+id/txtPrintInvoiceNo" />
+
+
+                <TextView
+                    android:id="@+id/txtPrintOverview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@{@string/print_overview(transactionViewModel.mutableLiveDataItems.size, transactionViewModel.mutableLiveDataQuantity.toString( )) }"
+                    tools:text="@string/demo_print_overview"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/txtPrintCompanyName" />
+
+                <View
+                    android:id="@+id/viewDivider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/gray_dark"
+                    app:layout_constraintTop_toBottomOf="@+id/txtPrintOverview" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewItemsPrint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/viewDivider1"
+                    tools:listitem="@layout/row_transaction_body_details" />
+
+
+                <TextView
+                    android:id="@+id/txtPrintTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@{@string/total(String.valueOf(transactionHead.totalWithVat))}"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerViewItemsPrint" />
+
+                <View
+                    android:id="@+id/viewDivider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/gray_dark"
+                    app:layout_constraintTop_toBottomOf="@+id/txtPrintTotal" />
+
+                <TextView
+                    android:id="@+id/txtPrintDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/demo_date"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toBottomOf="@+id/viewDivider2" />
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:id="@+id/layPrintQR"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintLeft_toRightOf="parent"
+                    android:textAlignment="center"
+                    app:layout_constraintTop_toBottomOf="@+id/txtPrintDate"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/imgPrintQR"
+                        android:layout_width="225dp"
+                        android:layout_height="225dp"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/layPrintQR"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintLeft_toRightOf="parent"
+                    android:id="@+id/txtVerifyUrl"
+                    android:autoLink="web"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray_dark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnReceiptPrint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:height="56dp"
+            android:background="@color/blueDark"
+            android:backgroundTint="@color/blueDark"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+             />
+    </RelativeLayout>
+
+</layout>

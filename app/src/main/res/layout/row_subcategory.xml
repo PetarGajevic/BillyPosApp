@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="subcategory"
+            type="com.wind.billypos.view.model.SubCategory" />
+    </data>
+    <RelativeLayout
+        android:padding="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/itemImg"
+            android:src="@drawable/ic_category"
+            android:layout_width="72dp"
+            android:layout_height="48dp" />
+
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/itemImg"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/operatorFirstName"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/gray_800"
+                android:text="@{ subcategory.subcategoryName }"
+                tools:text="@string/demo_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"/>
+
+
+
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/circleActivated"
+            android:layout_width="15dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:layout_alignParentEnd="true"
+            android:visibility="@{subcategory.isActive ? View.VISIBLE : View.INVISIBLE}"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/ic_baseline_circle_green_24" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/circleDeactivated"
+            android:layout_width="15dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:layout_alignParentEnd="true"
+            android:visibility="@{!subcategory.isActive ? View.VISIBLE : View.INVISIBLE}"
+            android:layout_alignEnd="@+id/deactivate"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/ic_baseline_circle_red_24" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/deactivate"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:layout_alignParentEnd="true"
+            android:visibility="@{subcategory.isActive ? View.VISIBLE : View.INVISIBLE}"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/ic_trash" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/activate"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:visibility="@{subcategory.isActive ? View.INVISIBLE : View.VISIBLE}"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/ic_refresh_1" />
+
+
+    </RelativeLayout>
+
+</layout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_settings"
+    app:startDestination="@id/settingsPreference">
+
+
+    <fragment
+        android:id="@+id/settingsPreference"
+        android:name="com.wind.billypos.view.ui.settings.viewmodel.SettingsPreference"
+        android:label="Settings">
+        <action
+            android:id="@+id/action_settingsPreference_to_syncAndBackupFragment"
+            app:destination="@id/syncAndBackupFragment" />
+        <action
+            android:id="@+id/action_settingsPreference_to_exportUnfiscalisedFragment"
+            app:destination="@id/exportUnfiscalisedFragment" />
+        <action
+            android:id="@+id/action_settingsPreference_to_fiscalisationFragment"
+            app:destination="@id/fiscalisationFragment" />
+        <action
+            android:id="@+id/action_settingsPreference_to_syncFragment"
+            app:destination="@id/syncFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/syncAndBackupFragment"
+        android:name="com.wind.billypos.view.ui.settings.SyncAndBackupFragment"
+        android:label="Sync and Backup"
+        tools:layout="@layout/fragment_sync_and_backup" />
+    <fragment
+        android:id="@+id/exportUnfiscalisedFragment"
+        android:name="com.wind.billypos.view.ui.settings.ExportUnfiscalisedFragment"
+        android:label="Export"
+        tools:layout="@layout/fragment_export_unfiscalised" />
+    <fragment
+        android:id="@+id/fiscalisationFragment"
+        android:name="com.wind.billypos.view.ui.settings.FiscalisationFragment"
+        android:label="FiscalisationFragment" />
+    <fragment
+        android:id="@+id/syncFragment"
+        android:name="com.wind.billypos.view.ui.settings.SyncFragment"
+        android:label="SyncFragment" />
+</navigation>

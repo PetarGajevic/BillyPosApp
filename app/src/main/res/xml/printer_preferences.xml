@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <SwitchPreference
+        android:key="print_with_usb"
+        android:title="@string/usb_printer"
+        app:isPreferenceVisible="false"
+        app:icon="@drawable/ic_print_24px" />
+
+    <ListPreference
+        app:icon="@drawable/ic_print_24px"
+        android:defaultValue="-1"
+        android:key="type_of_printer"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/choose_type_printer" />
+
+    <ListPreference
+        app:icon="@drawable/ic_print_24px"
+        android:defaultValue="-1"
+        android:key="usb_printer_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/choose_printer_usb" />
+
+    <ListPreference
+        app:icon="@drawable/ic_print_24px"
+        android:defaultValue="-1"
+        android:key="printer_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/choose_printer" />
+
+    <SwitchPreference
+        android:key="print_auto_invoice"
+        android:title="@string/enable_auto_print_invoice"
+        app:icon="@drawable/sync" />
+
+    <Preference
+        android:key="printer_communication_test_page"
+        android:title="@string/test_printer_communication"
+        app:icon="@drawable/ic_file_24px" />
+
+
+
+</androidx.preference.PreferenceScreen>

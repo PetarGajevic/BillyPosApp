@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="customer"
+            type="com.wind.billypos.view.model.Customer" />
+
+    </data>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+
+    <TextView
+        android:id="@+id/customerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray_800"
+        android:text="@{customer.name}"
+        tools:text="NAME"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/customerNuis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{customer.idNum}"
+        tools:text="NUIS"
+        android:textColor="@color/gray_800"
+        android:textSize="14sp" />
+
+</LinearLayout>
+
+</layout>

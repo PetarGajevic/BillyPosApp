@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.ui.invoice.TransactionItemBottomSheetDialogFragment">
+
+    <data>
+        <variable
+            name="transactionBody"
+            type="com.wind.billypos.view.model.TransactionBody" />
+
+        <variable
+            name="transactionItemViewModel"
+            type="com.wind.billypos.view.ui.invoice.viewmodel.TransactionItemViewModel" />
+    </data>
+
+<LinearLayout
+    android:id="@+id/list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:clipToPadding="false"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="8dp"
+   >
+
+    <TextView
+        android:id="@+id/txtBottomItemName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:padding="8dp"
+        android:text="@string/demo_item_name"
+        android:textAlignment="center"
+        android:textColor="@color/gray_700"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:text="@string/quantity"
+        android:textAlignment="center"
+        android:textColor="@color/gray_800"
+        android:textSize="18sp" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtBottomItemQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_gravity="center_horizontal"
+        android:editable="false"
+        android:enabled="false"
+        android:focusable="false"
+        android:inputType="number"
+        android:paddingLeft="48dp"
+        android:paddingRight="48dp"
+        tools:text="@string/demo_quantity"
+        android:textAlignment="center"
+        android:textColor="@color/gray_dark"
+        android:textSize="28sp" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDeleteItem"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:text="@string/remove_item"
+        android:textAllCaps="false"
+        android:textColor="@color/red"
+        android:textSize="16sp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:columnCount="3">
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:padding="8dp"
+            android:tag="tag_keyboard"
+            android:text="1"
+            android:textColor="@color/gray_dark"
+            android:textSize="36sp" />
+
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:padding="8dp"
+            android:tag="tag_keyboard"
+            android:text="2"
+            android:textColor="@color/gray_dark"
+            android:textSize="36sp" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:padding="8dp"
+            android:tag="tag_keyboard"
+            android:text="3"
+            android:textColor="@color/gray_dark"
+            android:textSize="36sp" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:padding="8dp"
+            android:tag="tag_keyboard"
+            android:text="4"
+            android:textColor="@color/gray_dark"
+            android:textSize="36sp" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:padding="8dp"
+            android:tag="tag_keyboard"
+            android:text="5"
+            android:textColor="@color/gray_dark"
+            android:textSize="36sp" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:padding="8dp"
+            android:tag="tag_keyboard"
+            android:text="6"
+            android:textColor="@color/gray_dark"
+            android:textSize="36sp" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:padding="8dp"
+            android:tag="tag_keyboard"
+            android:text="7"
+            android:textColor="@color/gray_dark"
+            android:textSize="36sp" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:padding="8dp"
+            android:tag="tag_keyboard"
+            android:text="8"
+            android:textColor="@color/gray_dark"
+            android:textSize="36sp" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:padding="8dp"
+            android:tag="tag_keyboard"
+            android:text="9"
+            android:textColor="@color/gray_dark"
+            android:textSize="36sp" />
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="3"
+            android:layout_gravity="fill"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <ImageView
+                android:id="@+id/keyboardBackspace"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="24dp"
+                android:src="@drawable/ic_round_backspace_24px" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:tag="tag_keyboard"
+                android:text="."
+                android:textColor="@color/gray_dark"
+                android:textSize="36sp" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:tag="tag_keyboard"
+                android:text="0"
+                android:textColor="@color/gray_dark"
+                android:textSize="36sp" />
+
+            <ImageView
+                android:id="@+id/keyboardApply"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="12dp"
+                android:src="@drawable/ic_round_check_24px" />
+        </LinearLayout>
+
+
+    </GridLayout>
+
+</LinearLayout>
+
+</layout>

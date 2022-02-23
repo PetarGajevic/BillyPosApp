@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="category"
+            type="com.wind.billypos.view.model.Category" />
+        
+        <variable
+            name="categoryDetailsViewModel"
+            type="com.wind.billypos.view.ui.category.viewmodel.CategoryDetailsViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tvCategoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@{ category.categoryName }"
+        android:layout_margin="20dp"
+        android:textSize="20sp"
+        tools:text="KATEGORIJA"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/circleActivated"
+        android:layout_width="15dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvCategoryName"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="@{category.isActive ? View.VISIBLE : View.INVISIBLE}"
+        app:srcCompat="@drawable/ic_baseline_circle_green_24" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/circleDeactivated"
+        android:layout_width="15dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvCategoryName"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="@{!category.isActive ? View.VISIBLE : View.INVISIBLE}"
+        app:srcCompat="@drawable/ic_baseline_circle_red_24" />
+
+    <TextView
+        android:id="@+id/tvActivateDeactivate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvCategoryName"
+        app:layout_constraintLeft_toRightOf="@+id/circleDeactivated"
+        android:text="@{ category.isActive ? @string/category_active :  @string/category_deactivated}"
+        android:layout_marginStart="10dp"
+        android:textSize="15sp"
+        tools:text="aktivna"
+        />
+
+    <ImageView
+        android:id="@+id/editCategory"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_pencil_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="20dp"/>
+
+    <SearchView
+        android:background="@color/gray_100"
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search Here"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editCategory"
+        />
+
+    <TextView
+        android:id="@+id/switchText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/activate_all_subcategories"
+        android:textSize="20sp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/rvSubcategories"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/subcategorySwitch"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:theme="@style/SCBSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rvSubcategories"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSubcategories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/subcategorySwitch"
+        tools:listitem="@layout/row_subcategory" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
